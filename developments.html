@@ -5,50 +5,6 @@
   <title>Методические разработки</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<!-- Lightbox -->
-<div id="lightbox" aria-hidden="true">
-  <div class="box">
-    <button class="close-btn" aria-label="Закрыть">✕</button>
-    <img src="" alt="">
-  </div>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const lightbox = document.getElementById('lightbox');
-  const lbImg = lightbox.querySelector('img');
-  const closeBtn = lightbox.querySelector('.close-btn');
-
-  // Открытие по клику на картинку
-  document.querySelectorAll('.gallery').forEach(gallery => {
-    gallery.addEventListener('click', (e) => {
-      const img = e.target.closest('img');
-      if (!img) return;
-      e.preventDefault();
-      const large = img.dataset.large || img.src;
-      lbImg.src = large;
-      lightbox.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      lightbox.setAttribute('aria-hidden', 'false');
-    });
-  });
-
-  // Функция закрытия
-  function closeLB() {
-    lightbox.classList.remove('open');
-    lbImg.src = '';
-    document.body.style.overflow = '';
-    lightbox.setAttribute('aria-hidden', 'true');
-  }
-
-  // Закрытие: по кнопке ✕, по клику ЛКМ на фон или картинку, по Esc
-  closeBtn.addEventListener('click', closeLB);
-  lightbox.addEventListener('click', () => closeLB);
-  lbImg.addEventListener('click', closeLB);
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLB(); });
-});
-</script>
-
 <body>
   <div class="sidebar">
     <h2>Меню</h2>
@@ -72,16 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="card">
       <h1>Методические разработки</h1>
 
-      <h2>Тематическое погружение 7 класс</h2>
-
-      <p><a href="https://drive.google.com/file/d/10WTPtNpamzEPTu4-Mh78-zMSXpqWtbhz/view?usp=sharing">Интервидение 20256</a></p>
-      <p><a href="https://drive.google.com/file/d/1BwgZsu3J82y057K082lxbYRTONYi44j7/view?usp=drive_link">Культурный код России</a></p>
-      <p>Мастерская «Смета расходов»:</p>
-      <ul>
-        <li><a href="https://drive.google.com/file/d/1ohMsmOrbwiuj0ISkGYbMc9qF39I5b25z/view?usp=drive_link">Файл 1</a></li>
-        <li><a href="https://drive.google.com/file/d/1-EGEso8maNLJlgNTUF4fXeUiXTMibKik/view?usp=drive_link">Файл 2</a></li>
-      </ul>
+      <p>
+        <a href="https://drive.google.com/drive/folders/1CqrRqpepuo1q1vhqmo5YbzS5D_g3C_ag?usp=drive_link">
+          Тематическое погружение «Интервидение 2025: культурный код России»  
+          (архив «Мастерская Смета расходов»)
+        </a>
+      </p>
     </div>
   </div>
+
 </body>
 </html>
