@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Сайт учителя Весновской В.В.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- Lightbox -->
+<div id="lightbox" aria-hidden="true">
+  <div class="box">
+    <button class="close-btn" aria-label="Закрыть">✕</button>
+    <img src="" alt="">
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = lightbox.querySelector('img');
+  const closeBtn = lightbox.querySelector('.close-btn');
+
+  // Открытие по клику на картинку
+  document.querySelectorAll('.gallery').forEach(gallery => {
+    gallery.addEventListener('click', (e) => {
+      const img = e.target.closest('img');
+      if (!img) return;
+      e.preventDefault();
+      const large = img.dataset.large || img.src;
+      lbImg.src = large;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      lightbox.setAttribute('aria-hidden', 'false');
+    });
+  });
+
+  // Функция закрытия
+  function closeLB() {
+    lightbox.classList.remove('open');
+    lbImg.src = '';
+    document.body.style.overflow = '';
+    lightbox.setAttribute('aria-hidden', 'true');
+  }
+
+  // Закрытие: по кнопке ✕, по клику ЛКМ на фон или картинку, по Esc
+  closeBtn.addEventListener('click', closeLB);
+  lightbox.addEventListener('click', () => closeLB);
+  lbImg.addEventListener('click', closeLB);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLB(); });
+});
+</script>
+
+
+<body>
+  <div class="sidebar">
+    <h2>Меню</h2>
+    <ul>
+      <li><a href="qualification.html">📘 Повышение квалификации</a></li>
+      <li><a href="awards.html">🏆 Благодарности и награды</a></li>
+      <li>
+        <strong>📂 Методическая копилка</strong>
+        <ul class="submenu">
+          <li><a href="programs.html">Рабочие программы</a></li>
+          <li><a href="materials.html">Методические материалы</a></li>
+          <li><a href="developments.html">Методические разработки</a></li>
+          <li><a href="resources.html">Открытые ресурсы</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <div class="photo">
+      <img src="picture/photo_teacher.jpg" alt="Фото учителя">
+    </div>
+
+    <div class="card">
+      <h1>Весновская Валентина Владимировна</h1>
+      <h2>Учитель математики и информатики</h2>
+      <p>Я рада приветствовать уважаемых коллег, учеников и родителей на моем сайте.</p>
+    </div>
+
+    <div class="card">
+      <h2>Мой педагогический путь</h2>
+      <ul>
+        <li>1993–1994 гг — учитель математики, школа №17 г. Ачинска</li>
+        <li>1994–2004 гг — преподаватель математики и информатики, Ачинский педагогический колледж</li>
+        <li>2010–2011 гг — преподаватель информатики, зам. директора, Ачинский филиал КГПУ</li>
+        <li>2011–2021 гг — учитель математики, зам. директора по УВР, школа №12 г. Ачинска</li>
+        <li>2021–2025 гг — учитель информатики, зам. директора по УВР, школа им. Е.М. Примакова (Посольство РФ на Кипре)</li>
+        <li>2025 — учитель математики, зам. директора по УМР, школа им. И.А. Лапенкова</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

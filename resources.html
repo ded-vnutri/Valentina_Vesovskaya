@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Методическая копилка — Открытые ресурсы</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .resources-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .resource-item {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+      text-align: center;
+    }
+    .resource-item img {
+      width: 150px;
+      margin-top: 10px;
+      border-radius: 8px;
+    }
+    .resource-item a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #005baa;
+    }
+    .resource-item a:hover {
+      color: #0081c9;
+    }
+  </style>
+</head>
+
+<!-- Lightbox -->
+<div id="lightbox" aria-hidden="true">
+  <div class="box">
+    <button class="close-btn" aria-label="Закрыть">✕</button>
+    <img src="" alt="">
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = lightbox.querySelector('img');
+  const closeBtn = lightbox.querySelector('.close-btn');
+
+  // Открытие по клику на картинку
+  document.querySelectorAll('.gallery').forEach(gallery => {
+    gallery.addEventListener('click', (e) => {
+      const img = e.target.closest('img');
+      if (!img) return;
+      e.preventDefault();
+      const large = img.dataset.large || img.src;
+      lbImg.src = large;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      lightbox.setAttribute('aria-hidden', 'false');
+    });
+  });
+
+  // Функция закрытия
+  function closeLB() {
+    lightbox.classList.remove('open');
+    lbImg.src = '';
+    document.body.style.overflow = '';
+    lightbox.setAttribute('aria-hidden', 'true');
+  }
+
+  // Закрытие: по кнопке ✕, по клику ЛКМ на фон или картинку, по Esc
+  closeBtn.addEventListener('click', closeLB);
+  lightbox.addEventListener('click', () => closeLB);
+  lbImg.addEventListener('click', closeLB);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLB(); });
+});
+</script>
+
+<body>
+  <div class="sidebar">
+    <h2>Меню</h2>
+    <ul>
+      <li><a href="index.html">🏠 Домашняя</a></li>
+      <li><a href="qualification.html">📘 Повышение квалификации</a></li>
+      <li><a href="awards.html">🏆 Благодарности и награды</a></li>
+      <li>
+        <strong>📂 Методическая копилка</strong>
+        <ul class="submenu">
+          <li><a href="programs.html">Рабочие программы</a></li>
+          <li><a href="materials.html">Методические материалы</a></li>
+          <li><a href="developments.html">Методические разработки</a></li>
+          <li><a href="resources.html">Открытые ресурсы</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <div class="card">
+      <h1>Открытые ресурсы</h1>
+      <div class="resources-grid">
+        <div class="resource-item">
+          <a href="https://www.yaklass.ru/" target="_blank">Цифровой ресурс «Якласс»</a>
+          <img src="picture/Якласс.png" alt="Якласс">
+        </div>
+        <div class="resource-item">
+          <a href="https://uchi.ru/" target="_blank">Онлайн-платформа «Учи.ру»</a>
+          <img src="picture/Uchi.png" alt="Учи.ру">
+        </div>
+        <div class="resource-item">
+          <a href="https://ege.sdamgia.ru/" target="_blank">Портал «Сдам ГИА»</a>
+          <img src="picture/СдамГиа.png" alt="Сдам ГИА">
+        </div>
+        <div class="resource-item">
+          <a href="https://resh.edu.ru/" target="_blank">Российская электронная школа</a>
+          <img src="picture/Российская эш.png" alt="РЭШ">
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

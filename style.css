@@ -1,0 +1,176 @@
+/* Общий стиль */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  display: flex;
+  background: #f4f8fb;
+  color: #333;
+}
+
+/* Левое меню */
+.sidebar {
+  width: 260px;
+  background: linear-gradient(180deg, #005baa, #0081c9);
+  padding: 25px 20px;
+  color: white;
+  min-height: 100vh;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+}
+.sidebar h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  padding-bottom: 10px;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar li {
+  margin: 14px 0;
+}
+.sidebar a {
+  text-decoration: none;
+  color: #fdfdfd;
+  font-weight: 500;
+  display: block;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.3s, padding-left 0.3s;
+}
+.sidebar a:hover {
+  background: rgba(255,255,255,0.15);
+  padding-left: 15px;
+}
+.submenu {
+  list-style: none;
+  margin: 8px 0 0 10px;
+  padding-left: 10px;
+  border-left: 2px solid rgba(255,255,255,0.4);
+}
+.submenu a {
+  font-weight: normal;
+  font-size: 14px;
+  color: #e0f3ff;
+}
+.submenu a:hover {
+  color: #fff;
+}
+
+/* Контент */
+.main {
+  flex: 1;
+  padding: 40px;
+  max-width: 1000px;
+}
+h1 {
+  font-size: 28px;
+  color: #005baa;
+  margin-bottom: 10px;
+  border-bottom: 3px solid #0081c9;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+h2, h3 {
+  color: #007acc;
+  margin-top: 25px;
+}
+
+/* Фото */
+.photo img {
+  width: 220px;
+  border-radius: 10px;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+}
+
+/* Карточки */
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+}
+
+
+
+
+/* === Галерея + Lightbox === */
+.gallery {
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+  align-items:flex-start;
+}
+
+.gallery img {
+  width:200px;
+  height:auto;
+  object-fit:cover;
+  border-radius:8px;
+  cursor:zoom-in;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+.gallery img:hover { transform: scale(1.03); }
+
+/* Lightbox (overlay) */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 9999;
+  background: rgba(0,0,0,0.85);
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+#lightbox.open { display: flex; }
+
+#lightbox .box {
+  position: relative;
+  max-width: 95%;
+  max-height: 95%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+#lightbox img {
+  max-width: 50%;
+  max-height: 50%;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+  transform-origin: center center;
+  transform: scale(0.7);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  cursor: zoom-out; /* намёк, что можно кликнуть для выхода */
+}
+
+#lightbox.open img {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Close button */
+#lightbox .close-btn {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  border: none;
+  font-size: 16px;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Повышение квалификации</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- Lightbox -->
+<div id="lightbox" aria-hidden="true">
+  <div class="box">
+    <button class="close-btn" aria-label="Закрыть">✕</button>
+    <img src="" alt="">
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = lightbox.querySelector('img');
+  const closeBtn = lightbox.querySelector('.close-btn');
+
+  // Открытие по клику на картинку
+  document.querySelectorAll('.gallery').forEach(gallery => {
+    gallery.addEventListener('click', (e) => {
+      const img = e.target.closest('img');
+      if (!img) return;
+      e.preventDefault();
+      const large = img.dataset.large || img.src;
+      lbImg.src = large;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      lightbox.setAttribute('aria-hidden', 'false');
+    });
+  });
+
+  // Функция закрытия
+  function closeLB() {
+    lightbox.classList.remove('open');
+    lbImg.src = '';
+    document.body.style.overflow = '';
+    lightbox.setAttribute('aria-hidden', 'true');
+  }
+
+  // Закрытие: по кнопке ✕, по клику ЛКМ на фон или картинку, по Esc
+  closeBtn.addEventListener('click', closeLB);
+  lightbox.addEventListener('click', () => closeLB);
+  lbImg.addEventListener('click', closeLB);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLB(); });
+});
+</script>
+
+<body>
+  <div class="sidebar">
+    <h2>Меню</h2>
+    <ul>
+      <li><a href="index.html">🏠 Домашняя</a></li>
+      <li><a href="awards.html">🏆 Благодарности и награды</a></li>
+      <li>
+        <strong>📂 Методическая копилка</strong>
+        <ul class="submenu">
+          <li><a href="programs.html">Рабочие программы</a></li>
+          <li><a href="materials.html">Методические материалы</a></li>
+          <li><a href="developments.html">Методические разработки</a></li>
+          <li><a href="resources.html">Открытые ресурсы</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <div class="card">
+      <h1>Повышение квалификации</h1>
+      <p>Два последних удостоверения:</p>
+      <div class="gallery">
+        <img src="picture/image (1).png" alt="Удостоверение 1">
+        <img src="picture/image.png" alt="Удостоверение 2">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
